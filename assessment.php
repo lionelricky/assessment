@@ -142,7 +142,7 @@ function delete_user($validate_delete){
 		// Connect to the database
 		$dbc = mysqli_connect(DB_HOST, DB_USER, DB_PASSWORD, DB_NAME);
 	
-		// Look up the username and password in the database	
+		// Look up the user ID in the database	
 		$query = "DELETE FROM users WHERE user_id = '$user_id'";
 		mysqli_query($dbc, $query) or die('DATABASE ERROR: Error deleting the course');
 	}

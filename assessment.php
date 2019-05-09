@@ -40,14 +40,22 @@ function insert_user($update){
 		
 		if(mysqli_num_rows($data) == 0) // no match insert new user
 		{
-			$query = "INSERT INTO `users` (user_inserted, user_modified, first_name, last_name, job_title, email, address1, address2, city, postal_code, province, country, phone, password, salt,date_of_birth, disable, reset_password, role_id) VALUES ('$user_inserted','$user_modified','$first_name','$last_name','$job_title','$email','$address1','$address2','$city','$postal_code','$province',$country',$phone',SHA('$password'),'$salt','$date_of_birth','$disable','$reset_password','$role_id');";
+			$query = "INSERT INTO `users` (user_inserted, user_modified, first_name, last_name, job_title, email, 
+			address1, address2, city, postal_code, province, country, phone, password, salt,date_of_birth, disable, 
+			reset_password, role_id) VALUES ('$user_inserted','$user_modified','$first_name','$last_name','$job_title',
+			'$email','$address1','$address2','$city','$postal_code','$province',$country',$phone',SHA('$password'),'$salt',
+			'$date_of_birth','$disable','$reset_password','$role_id');";
 			$data = mysqli_query($dbc, $query) or die ('ERROR: GETTING USER INFORMATION')
 			
 			//show success message
 			echo('Success! New user added.')
 			
 		}elseif($update == true){ // user found update requested
-			$query = "UPDATE users SET user_inserted='$user_inserted', user_modified='$user_modified', first_name='$first_name', last_name='$last_name', job_title='$job_title', email='$email', address1='$address1', address2='$address2', city='$city', postal_code='$postal_code', province='$province', country='$country', phone='$phone', password=SHA('$password'), salt='$salt',date_of_birth='$date_of_birth', disable='$disable', reset_password='$password', role_id='$role_id' WHERE user_id = '$user_id'";
+			$query = "UPDATE users SET user_inserted='$user_inserted', user_modified='$user_modified', 
+			first_name='$first_name', last_name='$last_name', job_title='$job_title', email='$email', address1='$address1', 
+			address2='$address2', city='$city', postal_code='$postal_code', province='$province', country='$country', 
+			phone='$phone', password=SHA('$password'), salt='$salt',date_of_birth='$date_of_birth', disable='$disable', 
+			reset_password='$password', role_id='$role_id' WHERE user_id = '$user_id'";
 			$data = mysqli_query($dbc, $query) or die ('ERROR: GETTING USER INFORMATION')
 				
 			//show success message and update user information
@@ -103,7 +111,10 @@ function update_user(){
 	$reset_password = mysqli_real_escape_string($dbc, trim($_POST['reset_password']));
 	$role_id = mysqli_real_escape_string($dbc, trim($_POST['role_id']));
 
-	$query = "UPDATE users SET user_inserted='$user_inserted', user_modified='$user_modified', first_name='$first_name', last_name='$last_name', job_title='$job_title', email='$email', address1='$address1', address2='$address2', city='$city', postal_code='$postal_code', province='$province', country='$country', phone='$phone', password=SHA('$password'), salt='$salt',date_of_birth='$date_of_birth', disable='$disable', reset_password='$password', role_id='$role_id' WHERE user_id = '$user_id'";
+	$query = "UPDATE users SET user_inserted='$user_inserted', user_modified='$user_modified', first_name='$first_name', 
+	last_name='$last_name', job_title='$job_title', email='$email', address1='$address1', address2='$address2', city='$city', 
+	postal_code='$postal_code', province='$province', country='$country', phone='$phone', password=SHA('$password'), salt='$salt',
+	date_of_birth='$date_of_birth', disable='$disable', reset_password='$password', role_id='$role_id' WHERE user_id = '$user_id'";
 	$data = mysqli_query($dbc, $query) or die ('ERROR: GETTING USER INFORMATION')
 				
 	//show success message and update user information
